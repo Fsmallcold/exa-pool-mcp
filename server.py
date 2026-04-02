@@ -31,7 +31,7 @@ EXA_POOL_API_KEY = os.getenv("EXA_POOL_API_KEY", "")
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", "3101"))
 
-mcp = FastMCP("exa-pool")
+mcp = FastMCP("exa-pool", host=HOST, port=PORT)
 
 TIMEOUT = httpx.Timeout(30.0, connect=5.0)
 
@@ -201,4 +201,4 @@ async def exa_get_research(research_id: str) -> str:
 if __name__ == "__main__":
     logger.info(f"Starting Exa Pool MCP on {HOST}:{PORT}")
     logger.info(f"ExaFree API: {EXA_POOL_BASE_URL}")
-    mcp.run(transport="streamable-http", host=HOST, port=PORT)
+    mcp.run(transport="streamable-http")
